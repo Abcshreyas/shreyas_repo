@@ -1,14 +1,29 @@
-version: 2.1
-orbs:
-   node: circleci/node@4.7.0
-jobs:
-   build:
-     excecutor:
-        name: node/default
-        tags: '10.4'
-     steps:
-        - checkout
-        - node/with-cache:
-            steps:
-              - run: npm install
-        - run: npm run test
+version: 2
+Jobs:
+  one:
+    docker:
+       - images: cing/ruby:2.6.8
+         auth:
+           username: damleshreyas9@gmail.com
+           password: Shreyas@28
+           
+      steps:
+        - checkout:
+        - run: echo Its Shreyas First shreyas_repo
+        - run: sleep 25
+      two:
+        docker:
+            - inage: cing/ruby: 3.0.2
+              auth:
+                username: damleshreyas9@gmail.com
+                password: Shreyas@28
+      steps:
+            - checkout:
+            - run: echo "Hello shreyas...."
+            - run: sleep 15
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
